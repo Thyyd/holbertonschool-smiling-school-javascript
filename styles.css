@@ -282,6 +282,12 @@
   }
 }
 
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
 /* POPULAR SECTION  */
 
 .popular {
@@ -297,11 +303,7 @@
 
 .section .card {
   border: 0;
-  width: 16rem;
-}
-
-.popular .card {
-  padding-bottom: 87px;
+  width: 16rem
 }
 
 .section .card-img-overlay {
@@ -336,6 +338,7 @@
   :root {
     --popular-arrows-x: -4vw;
   }
+
   .section .card {
     width: 19vw;
   }
@@ -362,6 +365,7 @@
   .section .card {
     width: 16rem;
   }
+
   .section .card-img-overlay img {
     width: 30%;
   }
@@ -376,7 +380,7 @@
     --popular-arrows-x: -6vw;
   }
   .section .card {
-    width: 16rem;
+    width: 16rem
   }
 }
 
@@ -527,6 +531,38 @@
   .footer .social {
     padding: 45px 0;
   }
+}
+
+/** Slick **/
+
+.slick-prev,
+.slick-next {
+  width: 40px;
+  height: 40px;
+  z-index: 10;
+}
+
+.slick-prev {
+  left: -50px;
+}
+
+.slick-next {
+  right: -50px;
+}
+
+.card-img-wrapper {
+  position: relative;
+}
+
+.play-overlay-container {
+  position: absolute; /* Par rapport à card-img-wrapper */
+  top: 50%; /* Centre axe y */
+  left: 50%; /* Centre axe x */
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
 }
 
 /* ==============================================================
@@ -877,6 +913,11 @@
   padding-bottom: 18px;
 }
 
+.results .card {
+  border: 1px solid rgba(0,0,0,0.1); /* Ajout d'une légère bordure aux cards */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Ajout d'une légère ombre aux bordures */
+}
+
 @media screen and (min-width: 576px) and (max-width: 767px) {
   .results .card-img-overlay {
     top: 1vh;
@@ -898,5 +939,155 @@
 
   .results .card {
     width: 90vw;
+  }
+}
+
+/* Loading */
+
+.loading {
+    border: 10px solid #f3f3f3;
+    border-top: 10px solid #C271FF;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 2s linear infinite;
+    margin: auto;
+}
+
+
+/* Carousel */
+
+.popular [id$='-carousel'] {
+  padding-bottom: 87px;
+}
+
+[id$='-carousel'] {
+    position: relative;
+}
+
+/* ============================= */
+/* SLIDES */
+/* ============================= */
+
+/* Espacement horizontal entre les cards */
+[id$='-carousel'] .slick-slide {
+  padding: 0 12px;
+  box-sizing: border-box;
+}
+
+/* Espacement vertical */
+[id$='-carousel'] .slick-slide {
+  padding-top: 18px;
+  padding-bottom: 18px;
+}
+
+/* ============================= */
+/* CARD */
+/* ============================= */
+
+[id$='-carousel'] .card {
+  max-width: 19rem;
+  border: 1px solid rgba(0,0,0,0.1); /* Ajout d'une légère bordure aux cards */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Ajout d'une légère ombre aux bordures */
+}
+
+/* ============================= */
+/* FLÈCHES */
+/* ============================= */
+
+[id$='-carousel'] .slick-prev,
+[id$='-carousel'] .slick-next {
+  position: absolute;
+  top: 30%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  z-index: 2;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Images flèches */
+[id$='-carousel'] .slick-prev img,
+[id$='-carousel'] .slick-next img {
+    width: 30px;
+    height: auto;
+    opacity: 0.5; /* moins foncé */
+    transition: opacity 0.3s ease;
+    -webkit-transition: opacity 0.3s ease;
+    -moz-transition: opacity 0.3s ease;
+    -ms-transition: opacity 0.3s ease;
+    -o-transition: opacity 0.3s ease;
+  }
+
+/* Positionnement Flèche Gauche */
+[id$='-carousel'] .slick-prev {
+  left: -38px;
+}
+
+/* Positionnement Flèche Droite */
+[id$='-carousel'] .slick-next {
+  right: -30px;
+}
+
+/* Hover plus visible */
+[id$='-carousel'] .slick-prev:hover img,
+[id$='-carousel'] .slick-next:hover img {
+    opacity: 1;
+}
+
+/* ============================= */
+/* RESPONSIVE */
+/* ============================= */
+
+@media (max-width: 992px) {
+  [id$='-carousel'] {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  [id$='-carousel'] .slick-prev {
+    left: -60px;
+  }
+
+  [id$='-carousel'] .slick-next {
+    right: -50px;
+  }
+
+  [id$='-carousel'] .slick-slide {
+    padding: 0 6px;
+  }
+}
+
+@media (max-width: 620px) {
+  [id$='-carousel'] .slick-prev {
+    left: -30px;
+  }
+
+  [id$='-carousel'] .slick-next {
+    right: -20px;
+  }
+}
+
+@media (max-width: 575px) {
+  [id$='-carousel'] {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  [id$='-carousel'] .slick-slide {
+    padding: 0 3px;
+  }
+
+  [id$='-carousel'] .slick-prev {
+    left: -30px;
+  }
+
+  [id$='-carousel'] .slick-next {
+    right: -20px;
   }
 }
